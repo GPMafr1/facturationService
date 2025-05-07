@@ -1,0 +1,53 @@
+application {  
+    config {
+    baseName facturationService
+    packageName com.africom.facturation
+    serverPort 8085
+    applicationType microservice
+    authenticationType jwt
+    prodDatabaseType postgresql
+    cacheProvider hazelcast
+    buildTool maven
+    databaseType sql
+    devDatabaseType postgresql
+    dtoSuffix DTO
+    embeddableLaunchScript false
+    enableHibernateCache false
+    enableSwaggerCodegen false
+    jhiPrefix jhi
+    jhipsterVersion "6.10.5"
+    serviceDiscoveryType eureka
+    skipClient true
+    skipUserManagement true
+    testFrameworks []
+    websocket false
+  }
+  entities FraisMission, OrdreFacturation
+}
+
+entity FraisMission {
+  id String required
+  dateDebut LocalDate required
+  dateFin LocalDate required
+  montantTotal BigDecimal required
+  avanceRecue BigDecimal required
+  netAPayer BigDecimal required
+
+}
+
+entity OrdreFacturation {
+  id String required
+  devis String required
+  bonDeCommande String required
+  numeroFacture String required
+  montantFacture BigDecimal required
+  dateFacture LocalDate required
+  dateEcheance LocalDate required
+  dateDecharge LocalDate required
+}
+
+dto * with mapstruct
+service * with serviceClass
+paginate * with pagination
+
+microservice FraisMission, OrdreFacturation with facturationService
